@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>io.github.eterk</groupId>
+    <artifactId>mian</artifactId>
+    <version>0.1</version>
+
+    <properties>
+        <scala.major.version>2.13</scala.major.version>
+        <scala.version>2.13.12</scala.version>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <distributionManagement>
+        <repository>
+            <id>nexus</id>
+            <url>http://localhost:8081/repository/maven-releases/</url>
+        </repository>
+    </distributionManagement>
+
+
+    <dependencies>
+        <!-- 添加scala库作为依赖包 -->
+        <dependency>
+            <groupId>org.scala-lang</groupId>
+            <artifactId>scala-library</artifactId>
+            <version>${scala.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.scala-lang</groupId>
+            <artifactId>scala-compiler</artifactId>
+            <version>${scala.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>2.14.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>2.14.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.scala-lang.modules</groupId>
+            <artifactId>scala-swing_2.13</artifactId>
+            <version>3.0.0</version>
+        </dependency>
+
+
+        <!--        <dependency>-->
+        <!--            <groupId>org.scala-lang</groupId>-->
+        <!--            <artifactId>scala-reflect</artifactId>-->
+        <!--            <version>${scala.version}</version>-->
+        <!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.scala-lang</groupId>-->
+        <!--            <artifactId>scala-tools</artifactId>-->
+        <!--            <version>${scala.version}</version>-->
+        <!--        </dependency>-->
+        <!--        use in icon colorful-->
+        <!-- https://mvnrepository.com/artifact/commons-net/commons-net -->
+
+
+        <!--use in architecture -->
+        <dependency>
+            <groupId>org.scalatest</groupId>
+            <artifactId>scalatest_${scala.major.version}</artifactId>
+            <version>3.2.17</version>
+            <scope>test</scope>
+        </dependency>
+
+
+        <!-- https://mvnrepository.com/artifact/com.osinka.i18n/scala-i18n -->
+        <dependency>
+            <groupId>com.osinka.i18n</groupId>
+            <artifactId>scala-i18n_2.13</artifactId>
+            <version>1.0.3</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.fusesource.jansi/jansi -->
+
+
+    </dependencies>
+
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>net.alchim31.maven</groupId>
+                <artifactId>scala-maven-plugin</artifactId>
+                <version>4.5.3</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>compile</goal>
+                            <goal>doc</goal>
+                            <goal>doc-jar</goal>
+                            <goal>testCompile</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <!--            &lt;!&ndash; 使用maven-dependency-plugin来分析项目的依赖 &ndash;&gt;-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>3.2.0</version>
+                <executions>
+                    <!--                                        <execution>-->
+                    <!--                                            <id>analyze</id>-->
+                    <!--                                            <goals>-->
+                    <!--                                                <goal>analyze-only</goal>-->
+                    <!--                                            </goals>-->
+                    <!--                                            <configuration>-->
+                    <!--                                                <failOnWarning>true</failOnWarning>-->
+                    <!--                                            </configuration>-->
+                    <!--                                        </execution>-->
+                    <!--                    <execution>-->
+                    <!--                        <id>copy-dependencies</id>-->
+                    <!--                        <phase>prepare-package</phase>-->
+                    <!--                        <goals>-->
+                    <!--                            <goal>copy-dependencies</goal>-->
+                    <!--                        </goals>-->
+                    <!--                        <configuration>-->
+                    <!--                            <outputDirectory>${project.build.directory}/lib</outputDirectory>-->
+                    <!--                            &lt;!&ndash;                            <includeArtifactIds>stanford-corenlp</includeArtifactIds>&ndash;&gt;-->
+                    <!--                        </configuration>-->
+                    <!--                    </execution>-->
+                </executions>
+            </plugin>
+            <!--            <plugin>-->
+            <!--                <groupId>org.apache.maven.plugins</groupId>-->
+            <!--                <artifactId>maven-assembly-plugin</artifactId>-->
+            <!--                <version>3.3.0</version>-->
+            <!--                <executions>-->
+            <!--                    <execution>-->
+            <!--                        <id>make-assembly</id>-->
+            <!--                        <phase>package</phase>-->
+            <!--                        <goals>-->
+            <!--                            <goal>single</goal>-->
+            <!--                        </goals>-->
+            <!--                        <configuration>-->
+            <!--                            <finalName>app</finalName>-->
+            <!--                            <appendAssemblyId>false</appendAssemblyId>-->
+            <!--                            <descriptors>-->
+            <!--                                <descriptor>src/main/assembly/assembly.xml</descriptor>-->
+            <!--                            </descriptors>-->
+            <!--                        </configuration>-->
+            <!--                    </execution>-->
+            <!--                </executions>-->
+            <!--            </plugin>-->
+
+        </plugins>
+    </build>
+
+
+</project>
+
